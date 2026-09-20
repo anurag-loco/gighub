@@ -19,7 +19,17 @@ const GigCard: FunctionComponent<GigCardType> = ({ gig, className = "" }) => {
       <Link className={styles.imageWrap} to={`/gig/${gig.id}`}>
         <img className={styles.imageIcon} alt="" src={gig.image} />
         <span className={styles.category}>{gig.category}</span>
-        <button className={[styles.favoriteButton, isFavorite ? styles.favoriteActive : ""].join(" ")} onClick={(event) => { event.preventDefault(); toggleFavorite(gig.id); }} aria-label={isFavorite ? "Remove from saved gigs" : "Save gig"}>
+        <button
+          className={[
+            styles.favoriteButton,
+            isFavorite ? styles.favoriteActive : "",
+          ].join(" ")}
+          onClick={(event) => {
+            event.preventDefault();
+            toggleFavorite(gig.id);
+          }}
+          aria-label={isFavorite ? "Remove from saved gigs" : "Save gig"}
+        >
           <Heart size={16} fill={isFavorite ? "currentColor" : "none"} />
         </button>
       </Link>
@@ -28,10 +38,15 @@ const GigCard: FunctionComponent<GigCardType> = ({ gig, className = "" }) => {
           <img className={styles.avatarIcon} alt="" src={gig.avatar} />
           <span>{gig.seller}</span>
           <span className={styles.verified}>✓</span>
-          <span className={styles.rating}><Star size={13} fill="currentColor" /> {gig.rating.toFixed(1)}</span>
+          <span className={styles.rating}>
+            <Star size={13} fill="currentColor" /> {gig.rating.toFixed(1)}
+          </span>
         </div>
         <h3>{gig.title}</h3>
-        <div className={styles.meta}><span>{gig.delivery}</span><strong>From ${gig.price}</strong></div>
+        <div className={styles.meta}>
+          <span>{gig.delivery}</span>
+          <strong>From ${gig.price}</strong>
+        </div>
       </Link>
     </article>
   );

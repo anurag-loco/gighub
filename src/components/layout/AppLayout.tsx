@@ -9,7 +9,10 @@ type AppLayoutProps = {
   className?: string;
 };
 
-const AppLayout: FunctionComponent<AppLayoutProps> = ({ children, className = "" }) => {
+const AppLayout: FunctionComponent<AppLayoutProps> = ({
+  children,
+  className = "",
+}) => {
   const briefOpen = useGigHubStore((state) => state.briefOpen);
 
   return (

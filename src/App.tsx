@@ -38,15 +38,18 @@ function App() {
     switch (pathname) {
       case "/":
         title = "GigHub — Find your next creative partner";
-        metaDescription = "A focused marketplace for finding exceptional freelance designers.";
+        metaDescription =
+          "A focused marketplace for finding exceptional freelance designers.";
         break;
       case "/notifications":
         title = "GigHub — Notifications & messages";
-        metaDescription = "Keep up with your project activity and conversations on GigHub.";
+        metaDescription =
+          "Keep up with your project activity and conversations on GigHub.";
         break;
       case "/search":
         title = "GigHub — Search results";
-        metaDescription = "Search independent creatives and find the right service for your next project.";
+        metaDescription =
+          "Search independent creatives and find the right service for your next project.";
         break;
       case "/saved":
         title = "GigHub — Saved gigs";
@@ -54,23 +57,28 @@ function App() {
         break;
       case "/profile":
         title = "GigHub — Your profile";
-        metaDescription = "Manage your GigHub workspace, activity, and preferences.";
+        metaDescription =
+          "Manage your GigHub workspace, activity, and preferences.";
         break;
       case "/freelancer":
         title = "GigHub — Freelancer workspace";
-        metaDescription = "Find better briefs, manage your services, and grow your freelance business on GigHub.";
+        metaDescription =
+          "Find better briefs, manage your services, and grow your freelance business on GigHub.";
         break;
       case "/freelancer/profile":
         title = "GigHub — Freelancer profile";
-        metaDescription = "Keep your freelancer profile polished and ready for the right opportunities.";
+        metaDescription =
+          "Keep your freelancer profile polished and ready for the right opportunities.";
         break;
       case "/about":
         title = "GigHub — About us";
-        metaDescription = "Learn why GigHub exists and what guides the marketplace.";
+        metaDescription =
+          "Learn why GigHub exists and what guides the marketplace.";
         break;
       case "/how-it-works":
         title = "GigHub — How it works";
-        metaDescription = "See how GigHub helps teams find creative partners and move projects forward.";
+        metaDescription =
+          "See how GigHub helps teams find creative partners and move projects forward.";
         break;
       default:
         title = "GigHub — Creative services marketplace";
@@ -83,7 +91,7 @@ function App() {
 
     if (metaDescription) {
       const metaDescriptionTag: HTMLMetaElement | null = document.querySelector(
-        'head > meta[name="description"]'
+        'head > meta[name="description"]',
       );
       if (metaDescriptionTag) {
         metaDescriptionTag.content = metaDescription;
@@ -103,7 +111,10 @@ function App() {
         <Route path="/freelancer" element={<FreelancerDashboardPage />} />
         <Route path="/freelancer/profile" element={<FreelancerProfilePage />} />
         <Route path="/about" element={<InformationPage variant="about" />} />
-        <Route path="/how-it-works" element={<InformationPage variant="how" />} />
+        <Route
+          path="/how-it-works"
+          element={<InformationPage variant="how" />}
+        />
         <Route path="*" element={<HomePage />} />
       </Routes>
       <AnimatePresence>

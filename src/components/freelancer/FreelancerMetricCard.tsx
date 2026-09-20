@@ -9,7 +9,13 @@ type FreelancerMetricCardProps = {
   tone?: "purple" | "teal" | "orange";
 };
 
-const FreelancerMetricCard: FunctionComponent<FreelancerMetricCardProps> = ({ label, value, detail, icon, tone = "purple" }) => (
+const FreelancerMetricCard: FunctionComponent<FreelancerMetricCardProps> = ({
+  label,
+  value,
+  detail,
+  icon,
+  tone = "purple",
+}) => (
   <article className={styles.card}>
     <div className={`${styles.icon} ${styles[tone]}`}>{icon}</div>
     <div className={styles.copy}>

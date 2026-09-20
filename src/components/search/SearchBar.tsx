@@ -18,7 +18,14 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ className = "" }) => {
   const suggestions = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     if (!normalizedQuery) return gigs.slice(0, 3);
-    return gigs.filter((gig) => [gig.title, gig.seller, gig.category, ...gig.tags].join(" ").toLowerCase().includes(normalizedQuery)).slice(0, 4);
+    return gigs
+      .filter((gig) =>
+        [gig.title, gig.seller, gig.category, ...gig.tags]
+          .join(" ")
+          .toLowerCase()
+          .includes(normalizedQuery),
+      )
+      .slice(0, 4);
   }, [query]);
 
   const goToSearch = (event?: FormEvent<HTMLFormElement>) => {
@@ -42,17 +49,66 @@ const SearchBar: FunctionComponent<SearchBarProps> = ({ className = "" }) => {
     <div className={[styles.wrapper, className].join(" ")}>
       <form className={styles.form} onSubmit={goToSearch}>
         <Search size={17} aria-hidden="true" />
-        <input value={query} onChange={(event) => setSearch(event.target.value)} onFocus={() => setIsOpen(true)} placeholder="What service are you looking for?" aria-label="Search services" autoComplete="off" />
-        <button aria-label="Search" type="submit"><Search size={16} /></button>
+        <input
+          value={query}
+          onChange={(event) => setSearch(event.target.value)}
+          onFocus={() => setIsOpen(true)}
+          placeholder="What service are you looking for?"
+          aria-label="Search services"
+          autoComplete="off"
+        />
+        <button aria-label="Search" type="submit">
+          <Search size={16} />
+        </button>
       </form>
-      {isOpen && <>
-        <button className={styles.dismiss} aria-label="Close search suggestions" onMouseDown={(event) => event.preventDefault()} onClick={() => setIsOpen(false)} />
-        <div className={styles.suggestions}>
-          <div className={styles.suggestionHeader}><span>{query.trim() ? "Suggested services" : "Popular right now"}</span><Sparkles size={14} /></div>
-          {suggestions.length > 0 ? suggestions.map((gig) => <button key={gig.id} className={styles.suggestion} onMouseDown={(event) => event.preventDefault()} onClick={() => chooseSuggestion(gig.title)}><img src={gig.image} alt="" /><span><strong>{gig.title}</strong><small>{gig.category} · From ${gig.price}</small></span><ArrowUpRight size={15} /></button>) : <div className={styles.noResults}>No exact matches yet. Try a broader phrase.</div>}
-          <button className={styles.allResults} onMouseDown={(event) => event.preventDefault()} onClick={() => goToSearch()}>Search all services <ArrowUpRight size={15} /></button>
-        </div>
-      </>}
+      {isOpen && (
+        <>
+          <button
+            className={styles.dismiss}
+            aria-label="Close search suggestions"
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={() => setIsOpen(false)}
+          />
+          <div className={styles.suggestions}>
+            <div className={styles.suggestionHeader}>
+              <span>
+                {query.trim() ? "Suggested services" : "Popular right now"}
+              </span>
+              <Sparkles size={14} />
+            </div>
+            {suggestions.length > 0 ? (
+              suggestions.map((gig) => (
+                <button
+                  key={gig.id}
+                  className={styles.suggestion}
+                  onMouseDown={(event) => event.preventDefault()}
+                  onClick={() => chooseSuggestion(gig.title)}
+                >
+                  <img src={gig.image} alt="" />
+                  <span>
+                    <strong>{gig.title}</strong>
+                    <small>
+                      {gig.category} · From ${gig.price}
+                    </small>
+                  </span>
+                  <ArrowUpRight size={15} />
+                </button>
+              ))
+            ) : (
+              <div className={styles.noResults}>
+                No exact matches yet. Try a broader phrase.
+              </div>
+            )}
+            <button
+              className={styles.allResults}
+              onMouseDown={(event) => event.preventDefault()}
+              onClick={() => goToSearch()}
+            >
+              Search all services <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
