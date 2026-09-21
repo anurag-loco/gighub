@@ -17,6 +17,9 @@ const Footer: FunctionComponent<FooterType> = ({ className = "" }) => (
         <a href="#support" onClick={(event) => event.preventDefault()}>
           Support
         </a>
+        <a href="#support" onClick={(event) => event.preventDefault()}>
+          Help
+        </a>
       </nav>
       <span className={styles.copyright}>© GigHub Ltd. 2024</span>
       <div className={styles.socials} aria-label="Social links">
