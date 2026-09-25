@@ -14,7 +14,7 @@ const FreelancerMetricCard: FunctionComponent<FreelancerMetricCardProps> = ({
   value,
   detail,
   icon,
-  tone = "purple",
+  tone = "teal",
 }) => (
   <article className={styles.card}>
     <div className={`${styles.icon} ${styles[tone]}`}>{icon}</div>
